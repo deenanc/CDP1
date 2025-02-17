@@ -13,7 +13,7 @@ public class Hooks {
 	@Before
 	public void setUp() {
 		System.setProperty("webdriver.chrome.driver", "D:\\driver\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
-		WebDriver driver=new ChromeDriver();
+		driver=new ChromeDriver();
 	}
 	
 	@After
