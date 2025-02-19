@@ -1,4 +1,7 @@
 Feature: Claim Submission
 
-Scenario: Simple way to claim submission
+Scenario: A&I Happy Path Claim Submission
+
 Given User is in CDP homepage
+Then User selects "<ClaimType>"
+Then User accepts terms and conditions
