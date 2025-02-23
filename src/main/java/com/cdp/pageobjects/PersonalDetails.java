@@ -1,9 +1,16 @@
 package com.cdp.pageobjects;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import com.cdp.applicationutils.ApplicationUtils;
 
 public class PersonalDetails {
+	
+	WebDriver driver;
+	ApplicationUtils appUtils;
 	
 	@FindBy(xpath="//textarea[@id='personalFirstName']")
 	public static WebElement firstName;
@@ -34,7 +41,7 @@ public class PersonalDetails {
 	@FindBy(xpath="(//input[@placeholder='Enter address'])[2]")
 	public static WebElement personalAddress;
 	
-	@FindBy(xpath="(//input[@placeholder='Enter postal code'])[2]")
+	@FindBy(xpath="//input[@id='yourselfPostalCode']")
 	public static WebElement postalCode;
 	
 	@FindBy(xpath="(//input[@placeholder='Enter city'])[2]")
@@ -100,6 +107,77 @@ public class PersonalDetails {
 	
 	@FindBy(xpath="//input[@id='accidentalCity']")
 	public static WebElement accidentalCity;
+	
+	public PersonalDetails(WebDriver driver) {
+		this.driver=driver;
+		PageFactory.initElements(driver, this);
+		appUtils=new ApplicationUtils(driver);
+	}
+	
+	public void basicDetails() throws InterruptedException {
+		appUtils.wait(90);
+		firstName.sendKeys("Deenadhayalan");
+		lastName.sendKeys("Nageshkumar");
+		personalEmail.sendKeys("deenanc@mail.com");
+		personalPolicyNumber.sendKeys("1234567890");
+		noMailCommunication.click();
+		Thread.sleep(4000);
+	}
+	
+	public void personalDetails(String person) throws InterruptedException {
+		
+		if(person.equals("Myself")) {
+			selectPerson.click();
+			Thread.sleep(2000);
+			
+			myselfSelected.click();
+			appUtils.wait(90);
+			nationalID.sendKeys("12wer34");
+			appUtils.wait(20);
+			personalAddress.sendKeys("10, Pennsylvania avenue");
+			appUtils.wait(20);
+			postalCode.sendKeys("600100");
+			appUtils.wait(20);
+			personalCity.sendKeys("Washington DC");
+		}
+		else if(person.equals("SomeoneElse")) {
+			selectPerson.click();
+			Thread.sleep(2000);
+			
+			someoneElseSelected.click();
+			appUtils.wait(90);
+			relationship.click();
+			spouse.click();
+			someoneElseFname.sendKeys("Kayadu");
+			appUtils.wait(90);
+			someoneElseLname.sendKeys("Lohar");
+			appUtils.wait(20);
+			someoneElseID.sendKeys("123qas3");
+			appUtils.wait(20);
+			someoneElseMail.sendKeys("lohar@mail.com");
+			appUtils.wait(20);
+			someoneElseAddress.sendKeys("112, Lover's lane");
+			appUtils.wait(20);
+			someoneElsePostalCode.sendKeys("112889");
+			appUtils.wait(20);
+			someoneElseCity.sendKeys("Assam");
+		}
+		else if(person.equals("spouse")) {
+			accidentalRelationship.click();
+			Thread.sleep(2000);
+			
+			spouseCohabitant.click();
+			accidentalFirstName.sendKeys("Kayadu");
+			accidentalLastName.sendKeys("Lohar");
+			accidentalNationalIdentity.sendKeys("uy671ki");
+			relationAddress.sendKeys("110,yt lane");
+			accidentalPostalCode.sendKeys("128765");
+			accidentalCity.sendKeys("Sqwerty");
+		}
+		
+		Thread.sleep(2000);
+		contToClaimDetails.click();
+	}
 	
 
 }

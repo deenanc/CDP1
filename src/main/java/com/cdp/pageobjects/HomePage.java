@@ -35,15 +35,15 @@ public class HomePage {
 	public void claimSelection(String selectedClaim) {
 		
 		if(selectedClaim.equals("Personal Accident")) {
-			appUtils.wait(120);
+			appUtils.wait(240);
 			personalAccident.click();
 		}
 		else if(selectedClaim.equals("Critical Illness")) {
-			appUtils.wait(120);
+			appUtils.wait(240);
 			criticalIllness.click();
 		}
 		else if(selectedClaim.equals("Accidental Death")) {
-			appUtils.wait(120);
+			appUtils.wait(240);
 			accidentalDeath.click();
 		}
 		

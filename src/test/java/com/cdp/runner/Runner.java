@@ -12,7 +12,8 @@ import io.cucumber.junit.CucumberOptions;
     features = "src/test/resources/featurefiles",
     glue = {"com.cdp.stepdefinitions", "com.cdp.hooks"},
     plugin = {"pretty", "html:target/cucumber-reports.html"},
-    monochrome = true
+    monochrome = true,
+    dryRun = false
 )
 
 
