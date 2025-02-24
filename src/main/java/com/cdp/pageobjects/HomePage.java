@@ -12,7 +12,7 @@ import com.cdp.applicationutils.ApplicationUtils;
 public class HomePage {
 	
 	WebDriver driver;
-	ApplicationUtils appUtils;
+	private ApplicationUtils appUtils;
 	
 	@FindBy(xpath="//label[text()='Personal Accident']")
 	public static WebElement personalAccident;

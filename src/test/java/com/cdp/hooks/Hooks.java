@@ -2,18 +2,23 @@ package com.cdp.hooks;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.picocontainer.Injector;
+
+import com.cdp.applicationutils.DependencyInjector;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 
 public class Hooks {
 	
-	private static WebDriver driver;
+	private WebDriver driver;
+    private DependencyInjector injector;
 	
 	@Before
 	public void setUp() {
 		System.setProperty("webdriver.chrome.driver", "D:\\driver\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
-		driver=new ChromeDriver();
+		this.driver=new ChromeDriver();
+		this.injector=new DependencyInjector(driver);
 	}
 	
 	@After
@@ -21,7 +26,7 @@ public class Hooks {
 		driver.quit();
 	}
 	
-	public static WebDriver getDriver() {
+	public WebDriver getDriver() {
 		return driver;
 	}
 
