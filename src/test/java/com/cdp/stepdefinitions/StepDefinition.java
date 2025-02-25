@@ -3,8 +3,8 @@ package com.cdp.stepdefinitions;
 import org.openqa.selenium.WebDriver;
 
 import com.cdp.applicationutils.ApplicationUtils;
-import com.cdp.applicationutils.DependencyInjector;
 import com.cdp.hooks.Hooks;
+import com.cdp.pageobjects.ClaimDetails;
 import com.cdp.pageobjects.HomePage;
 import com.cdp.pageobjects.InsuranceDetails;
 import com.cdp.pageobjects.PersonalDetails;
@@ -21,17 +21,20 @@ public class StepDefinition {
 	private RequirementPage requirementPage;
 	private InsuranceDetails insDetails;
 	private PersonalDetails personalDetails;
+	private ClaimDetails claims;
 	
-//	private DependencyInjector injector;
 	
-	
-	public StepDefinition(DependencyInjector injector) {
+	public StepDefinition() {
+
+		
 		this.driver=Hooks.getDriver();
-		this.homePage=injector.getHomePage();
-		this.appUtils=injector.getAppUtils();
-		this.requirementPage=injector.getRequirementPage();
-		this.insDetails=injector.getInsuranceDetails();
-		this.personalDetails=injector.getPersonalDetails();
+		
+		homePage=new HomePage(driver);
+		appUtils=new ApplicationUtils(driver);
+		requirementPage=new RequirementPage(driver);
+		insDetails=new InsuranceDetails(driver);
+		personalDetails=new PersonalDetails(driver);
+		claims=new ClaimDetails(driver);
 	}
 	
 	@Given("User is in CDP homepage")
@@ -68,5 +71,12 @@ public class StepDefinition {
 	    appUtils.wait(20);
 	    personalDetails.personalDetails(person);
 	}
+	
+	@Then("User enters {string} and navigate to bank details")
+	public void user_enters_and_navigate_to_bank_details(String claim) {
+		appUtils.wait(20);
+		claims.claimDetails(claim);
+	}
+
 
 }

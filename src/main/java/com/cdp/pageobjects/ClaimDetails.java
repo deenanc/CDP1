@@ -1,9 +1,16 @@
 package com.cdp.pageobjects;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import com.cdp.applicationutils.ApplicationUtils;
 
 public class ClaimDetails {
+	
+	WebDriver driver;
+	ApplicationUtils appUtils;
 	
 	/////////////////////////Personal Accident/////////////////////
 	
@@ -97,5 +104,80 @@ public class ClaimDetails {
 	
 	@FindBy(xpath="//button[text()=' Continue ']")
 	public static WebElement contToBankDetails;
+	
+	public ClaimDetails(WebDriver driver) {
+		this.driver=driver;
+		PageFactory.initElements(driver, this);
+		appUtils=new ApplicationUtils(driver);
+	}
+	
+	public void claimDetails(String claim) {
+		
+		if(claim.equals("PADetails")) {
+			appUtils.wait(90);
+			accidentDate.sendKeys("12/02/2025");
+			appUtils.wait(90);
+			viewTimepicker.click();
+			appUtils.wait(90);
+			apply.click();
+			appUtils.wait(90);
+			leisureBusiness.click();
+			appUtils.wait(90);
+			howAccidentHappen.sendKeys("It happended");
+			appUtils.wait(90);
+			medicalTratmentDate.sendKeys("14/02/2025");
+			appUtils.wait(90);
+			medicalFacility.sendKeys("Dr.Murphy");
+			appUtils.wait(90);
+			contToInjuryDiagnosis.click();
+			appUtils.wait(90);
+			diagnosis.click();
+			appUtils.wait(90);
+			sprain.click();
+			appUtils.wait(90);
+			diagnosisDate.click();
+			appUtils.wait(90);
+			noClaimfor3Years.click();
+			appUtils.wait(90);
+			contToTreatmentCost.click();
+			appUtils.wait(90);
+			noHospitalization.click();
+			appUtils.wait(90);
+			noMedicalExpense.click();
+			appUtils.wait(90);
+			noContTreatment.click();
+			appUtils.wait(90);
+			contToDocPA.click();
+		}
+		else if(claim.equals("CIDetails")) {
+			appUtils.wait(90);
+			medicalTreatment.sendKeys("12/02/2025");
+			appUtils.wait(90);
+			contToNextDate.click();
+			appUtils.wait(90);
+			illnessDiagnosis.click();
+			appUtils.wait(90);
+			multipleSclerosis.click();
+			appUtils.wait(90);
+			diagnosisDateCI.sendKeys("14/02/2025");
+			appUtils.wait(90);
+			noSimilarDiagnosis.click();
+			appUtils.wait(90);
+			contToDocCI.click();
+		}
+		else if(claim.equals("ADDeath")) {
+			appUtils.wait(90);
+			howAccidentHappenAD.sendKeys("QQQQ");
+			appUtils.wait(90);
+			dateAD.sendKeys("02/02/2025");
+			appUtils.wait(90);
+			noChronicDisease.click();
+			appUtils.wait(90);
+			contToDocAD.click();
+		}
+		
+		appUtils.wait(90);
+		contToBankDetails.click();
+	}
 
 }

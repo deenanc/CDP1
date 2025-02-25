@@ -147,7 +147,9 @@ public class PersonalDetails {
 			someoneElseSelected.click();
 			appUtils.wait(90);
 			relationship.click();
+			appUtils.wait(90);
 			spouse.click();
+			appUtils.wait(90);
 			someoneElseFname.sendKeys("Kayadu");
 			appUtils.wait(90);
 			someoneElseLname.sendKeys("Lohar");
