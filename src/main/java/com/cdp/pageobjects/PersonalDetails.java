@@ -136,6 +136,7 @@ public class PersonalDetails {
 			appUtils.wait(20);
 			personalAddress.sendKeys("10, Pennsylvania avenue");
 			appUtils.wait(20);
+			Thread.sleep(2000);
 			postalCode.sendKeys("600100");
 			appUtils.wait(20);
 			personalCity.sendKeys("Washington DC");
@@ -152,6 +153,7 @@ public class PersonalDetails {
 			appUtils.wait(90);
 			someoneElseFname.sendKeys("Kayadu");
 			appUtils.wait(90);
+			Thread.sleep(2000);
 			someoneElseLname.sendKeys("Lohar");
 			appUtils.wait(20);
 			someoneElseID.sendKeys("123qas3");

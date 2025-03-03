@@ -73,7 +73,7 @@ public class StepDefinition {
 	}
 	
 	@Then("User enters {string} and navigate to bank details")
-	public void user_enters_and_navigate_to_bank_details(String claim) {
+	public void user_enters_and_navigate_to_bank_details(String claim) throws InterruptedException {
 		appUtils.wait(20);
 		claims.claimDetails(claim);
 	}

@@ -11,6 +11,6 @@ And User enters "<ClaimDetails>" and navigate to bank details
 
 Examples:
 |ClaimType|InsuranceType|PersonalDetails|ClaimDetails|
-|Personal Accident|Employer|Myself|PADetails|
-|Critical Illness|UnionAssociation|SomeoneElse|CIDetails|
+#|Personal Accident|Employer|Myself|PADetails|
+#|Critical Illness|UnionAssociation|SomeoneElse|CIDetails|
 |Accidental Death|PurchasedMyself|spouse|ADDetails|

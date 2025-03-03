@@ -1,7 +1,10 @@
 package com.cdp.pageobjects;
 
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -26,7 +29,7 @@ public class ClaimDetails {
 	@FindBy(xpath="//label[@for='radio-0leisureBusiness']")
 	public static WebElement leisureBusiness;
 	
-	@FindBy(xpath="(//textarea[@placeholder='Please provide as much detail as possible.'])[1]")
+	@FindBy(xpath="//label[text()=' How did the accident happen? ']/following::textarea[@id='accidentDescriptionCause']")
 	public static WebElement howAccidentHappen;
 	
 	@FindBy(xpath="(//input[@placeholder='DD/MM/YYYY'])[2]")
@@ -44,8 +47,8 @@ public class ClaimDetails {
 	@FindBy(xpath="//span[text()='Sprain']")
 	public static WebElement sprain;
 	
-	@FindBy(xpath="(//input[@placeholder='DD/MM/YYYY'])[3]")
-	public static WebElement diagnosisDate;
+	@FindBy(xpath="//label[@id='dateOfDiagnosisPersonal-label']/parent::div/axis-datepicker/div/input")
+	public static WebElement diagnosisDate1;
 	
 	@FindBy(xpath="//label[@for='radio-1accidentClaim']")
 	public static WebElement noClaimfor3Years;
@@ -85,12 +88,15 @@ public class ClaimDetails {
 	@FindBy(xpath="//label[@for='radio-1similarDiagnosis']")
 	public static WebElement noSimilarDiagnosis;
 	
+	@FindBy(xpath="//textarea[@id='criticalIllnessDiagnosisInformation']")
+	public static WebElement additionalInfo;
+	
 	@FindBy(xpath="(//button[text()=' Continue to Upload Documents '])[2]")
 	public static WebElement contToDocCI;
 	
 	/////////////////////////Accidental Death/////////////////////////
 	
-	@FindBy(xpath="(//textarea[@aria-label='How did the accident happen'])[2]")
+	@FindBy(xpath="//textarea[@id='accidentIllnessDescription']")
 	public static WebElement howAccidentHappenAD;
 	
 	@FindBy(xpath="(//input[@placeholder='DD/MM/YYYY'])[9]")
@@ -111,7 +117,7 @@ public class ClaimDetails {
 		appUtils=new ApplicationUtils(driver);
 	}
 	
-	public void claimDetails(String claim) {
+	public void claimDetails(String claim) throws InterruptedException {
 		
 		if(claim.equals("PADetails")) {
 			appUtils.wait(90);
@@ -121,8 +127,10 @@ public class ClaimDetails {
 			appUtils.wait(90);
 			apply.click();
 			appUtils.wait(90);
+			Thread.sleep(4000);
 			leisureBusiness.click();
 			appUtils.wait(90);
+			Thread.sleep(4000);
 			howAccidentHappen.sendKeys("It happended");
 			appUtils.wait(90);
 			medicalTratmentDate.sendKeys("14/02/2025");
@@ -135,10 +143,24 @@ public class ClaimDetails {
 			appUtils.wait(90);
 			sprain.click();
 			appUtils.wait(90);
-			diagnosisDate.click();
+			Thread.sleep(4000);
+			
+//			diagnosisDate1.click();
+			
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].click();", diagnosisDate1);
+			
+			Actions actions = new Actions(driver);
+			actions.moveToElement(diagnosisDate1).click().perform();
+
 			appUtils.wait(90);
-			noClaimfor3Years.click();
+			
+//			noClaimfor3Years.click();
+			
+			js.executeScript("arguments[0].click();", noClaimfor3Years);
+			
 			appUtils.wait(90);
+			Thread.sleep(2000);
 			contToTreatmentCost.click();
 			appUtils.wait(90);
 			noHospitalization.click();
@@ -161,11 +183,26 @@ public class ClaimDetails {
 			appUtils.wait(90);
 			diagnosisDateCI.sendKeys("14/02/2025");
 			appUtils.wait(90);
-			noSimilarDiagnosis.click();
+			
+//			additionalInfo.click();
+			
+			Actions actions = new Actions(driver);
+			actions.sendKeys(Keys.PAGE_DOWN).perform();
+			Thread.sleep(4000);
+//			actions.moveToElement(additionalInfo).click().perform();
+			
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].click();", noSimilarDiagnosis);
+			
+			actions.moveToElement(noSimilarDiagnosis).click().perform();
+			
+			
+//			noSimilarDiagnosis.click();
+			
 			appUtils.wait(90);
 			contToDocCI.click();
 		}
-		else if(claim.equals("ADDeath")) {
+		else if(claim.equals("ADDetails")) {
 			appUtils.wait(90);
 			howAccidentHappenAD.sendKeys("QQQQ");
 			appUtils.wait(90);
@@ -173,10 +210,12 @@ public class ClaimDetails {
 			appUtils.wait(90);
 			noChronicDisease.click();
 			appUtils.wait(90);
+			Thread.sleep(4000);
 			contToDocAD.click();
 		}
 		
 		appUtils.wait(90);
+		Thread.sleep(4000);
 		contToBankDetails.click();
 	}
 
