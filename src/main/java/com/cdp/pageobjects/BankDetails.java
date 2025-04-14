@@ -1,61 +1,129 @@
 package com.cdp.pageobjects;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import com.cdp.applicationutils.ApplicationUtils;
 
 public class BankDetails {
 	
+	WebDriver driver;
+	ApplicationUtils appUtils;
+	
 	@FindBy(xpath="//label[text()='Norwegian Bank Account']")
-	public static WebElement norwegianBankAccount;
+	public WebElement norwegianBankAccount;
 	
 	@FindBy(xpath="//label[text()='Foreign Bank Account']")
-	public static WebElement foreignBankAccount;
+	public WebElement foreignBankAccount;
 	
 	////////////////////////////Norwegian Bank Account//////////////////////
 	
 	@FindBy(xpath="//input[@id='accountOwnerNameN']")
-	public static WebElement accOwnerName;
+	public WebElement accOwnerName;
 	
 	@FindBy(xpath="//input[@id='bankNameN']")
-	public static WebElement bankName;
+	public WebElement bankName;
 	
 	@FindBy(xpath="//input[@id='accountNumberN']")
-	public static WebElement accNumber;
+	public WebElement accNumber;
 	
 	@FindBy(xpath="//input[@id='confirmAccountNumberN']")
-	public static WebElement confirmAccNumber;
+	public WebElement confirmAccNumber;
 	
 	@FindBy(xpath="(//label[text()='Address is the same as previously provided. '])[1]")
-	public static WebElement sameAddressNorwegianBank;
+	public WebElement sameAddressNorwegianBank;
 	
 	////////////////////////////////Foreign Bank//////////////////////////////
 	
 	@FindBy(xpath="//input[@id='accountOwnerNameF']")
-	public static WebElement accOwnerNameForeign;
+	public WebElement accOwnerNameForeign;
 	
 	@FindBy(xpath="//input[@id='bankNameF']")
-	public static WebElement foreignBankName;
+	public WebElement foreignBankName;
 	
 	@FindBy(xpath="//input[@id='accountNumberF']")
-	public static WebElement foreignAccNumber;
+	public WebElement foreignAccNumber;
 	
 	@FindBy(xpath="//input[@id='confirmAccountNumberF']")
-	public static WebElement confirmForeignAccNumber;
+	public WebElement confirmForeignAccNumber;
 	
 	@FindBy(xpath="//input[@id='bicSwiftF']")
-	public static WebElement BICSwift;
+	public WebElement BICSwift;
 	
 	@FindBy(xpath="(//label[text()='Address is the same as previously provided. '])[2]")
-	public static WebElement sameAddressForeignBank;
+	public WebElement sameAddressForeignBank;
 	
 	@FindBy(xpath="//button[text()=' Continue to Review & Submit ']")
-	public static WebElement contToReviewSubmit;
+	public WebElement contToReviewSubmit;
 	
 	@FindBy(xpath="//span[text()='Submit']")
-	public static WebElement submit;
+	public WebElement submit;
 	
 	@FindBy(xpath="//span[@data-icon='shield_check']")
-	public static WebElement shieldCheck;
+	public WebElement shieldCheck;
+	
+	public BankDetails(WebDriver driver) {
+		this.driver=driver;
+		PageFactory.initElements(driver, this);
+		appUtils=new ApplicationUtils(driver);
+	}
+	
+	public void bankDetails(String bank) throws InterruptedException  {
+		if(bank.equals("Foreign")) {
+			appUtils.wait(90);
+			foreignBankAccount.click();
+			
+			appUtils.wait(90);
+			accOwnerNameForeign.sendKeys("Deenadhayalan Nageshkumar");
+			
+			appUtils.wait(90);
+			foreignBankName.sendKeys("DBS");
+			
+			appUtils.wait(90);
+			Thread.sleep(4000);
+			foreignAccNumber.sendKeys("1111111111");
+			
+			appUtils.wait(90);
+			Thread.sleep(4000);
+			confirmForeignAccNumber.sendKeys("1111111111");
+			
+			appUtils.wait(90);
+			Thread.sleep(4000);
+			BICSwift.sendKeys("143AUAM");
+			
+			appUtils.wait(90);
+			sameAddressForeignBank.click();
+				
+		}
+		
+		else if(bank.equals("Norwegian")) {
+			
+			appUtils.wait(90);
+			norwegianBankAccount.click();
+			
+			appUtils.wait(90);
+			accOwnerName.sendKeys("Deenadhayalan Nageshkumar");
+			
+			appUtils.wait(90);
+			bankName.sendKeys("DBSN");
+			
+			appUtils.wait(90);
+			Thread.sleep(4000);
+			accNumber.sendKeys("11111111111");
+			
+			appUtils.wait(90);
+			Thread.sleep(4000);
+			confirmAccNumber.sendKeys("11111111111");
+			
+			appUtils.wait(90);
+			Thread.sleep(4000);
+			sameAddressNorwegianBank.click();
+			
+		}
+		
+	}
 	
 
 }

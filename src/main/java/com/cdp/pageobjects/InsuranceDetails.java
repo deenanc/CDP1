@@ -110,6 +110,7 @@ public class InsuranceDetails {
 		}
 		else if(insuranceType.equals("PurchasedMyself")) {
 			appUtils.wait(90);
+			Thread.sleep(4000);
 			purchasedMyselfInsurance.click();
 			
 			Thread.sleep(4000);
@@ -121,6 +122,7 @@ public class InsuranceDetails {
 		}
 		else if(insuranceType.equals("UnionAssociation")) {
 			appUtils.wait(90);
+			Thread.sleep(2000);
 			unionAssociationInsurance.click();
 			
 			Thread.sleep(4000);

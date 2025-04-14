@@ -134,6 +134,7 @@ public class PersonalDetails {
 			appUtils.wait(90);
 			nationalID.sendKeys("12wer34");
 			appUtils.wait(20);
+			Thread.sleep(2000);
 			personalAddress.sendKeys("10, Pennsylvania avenue");
 			appUtils.wait(20);
 			Thread.sleep(2000);
@@ -151,6 +152,7 @@ public class PersonalDetails {
 			appUtils.wait(90);
 			spouse.click();
 			appUtils.wait(90);
+			Thread.sleep(2000);
 			someoneElseFname.sendKeys("Kayadu");
 			appUtils.wait(90);
 			Thread.sleep(2000);

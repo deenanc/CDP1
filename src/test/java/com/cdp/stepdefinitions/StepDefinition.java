@@ -3,7 +3,9 @@ package com.cdp.stepdefinitions;
 import org.openqa.selenium.WebDriver;
 
 import com.cdp.applicationutils.ApplicationUtils;
+import com.cdp.configuration.ConfigReader;
 import com.cdp.hooks.Hooks;
+import com.cdp.pageobjects.BankDetails;
 import com.cdp.pageobjects.ClaimDetails;
 import com.cdp.pageobjects.HomePage;
 import com.cdp.pageobjects.InsuranceDetails;
@@ -22,6 +24,7 @@ public class StepDefinition {
 	private InsuranceDetails insDetails;
 	private PersonalDetails personalDetails;
 	private ClaimDetails claims;
+	private BankDetails bankDetails;
 	
 	
 	public StepDefinition() {
@@ -35,11 +38,12 @@ public class StepDefinition {
 		insDetails=new InsuranceDetails(driver);
 		personalDetails=new PersonalDetails(driver);
 		claims=new ClaimDetails(driver);
+		bankDetails=new BankDetails(driver);
 	}
 	
 	@Given("User is in CDP homepage")
 	public void user_is_in_cdp_homepage() {
-	    driver.navigate().to("https://qa.cdpfnol.nprd.aig.com/cdp/nordics/no/en/ah");
+	    driver.navigate().to(ConfigReader.getProperty("baseURL"));
 	    driver.manage().window().maximize();
 	}
 	
@@ -78,5 +82,12 @@ public class StepDefinition {
 		claims.claimDetails(claim);
 	}
 
+	@Then("User enters {string} and review details")
+	public void user_enters_and_review_details(String bank) throws InterruptedException {
+		appUtils.wait(20);
+		bankDetails.bankDetails(bank);
+		appUtils.wait(20);
+		bankDetails.contToReviewSubmit.click();
+	}
 
 }

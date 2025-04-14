@@ -3,6 +3,8 @@ package com.cdp.hooks;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import com.cdp.configuration.DriverFactory;
+
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 
@@ -13,8 +15,9 @@ public class Hooks {
 	
 	@Before
 	public void setUp() {
-		System.setProperty("webdriver.chrome.driver", "D:\\driver\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
-		Hooks.driver=new ChromeDriver();
+		driver = DriverFactory.initializeDriver();
+//		System.setProperty("webdriver.chrome.driver", "D:\\driver\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
+//		Hooks.driver=new ChromeDriver();
 
 	}
 	

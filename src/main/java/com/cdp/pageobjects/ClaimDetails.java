@@ -194,13 +194,15 @@ public class ClaimDetails {
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			js.executeScript("arguments[0].click();", noSimilarDiagnosis);
 			
+			Thread.sleep(2000);
 			actions.moveToElement(noSimilarDiagnosis).click().perform();
 			
 			
 //			noSimilarDiagnosis.click();
 			
 			appUtils.wait(90);
-			contToDocCI.click();
+//			contToDocCI.click();
+			js.executeScript("arguments[0].click();", contToDocCI);
 		}
 		else if(claim.equals("ADDetails")) {
 			appUtils.wait(90);
