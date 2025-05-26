@@ -85,11 +85,7 @@
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>com.saucelabs.login</groupId>
-			<artifactId>Cucumberall4</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+
 		
 		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
 <dependency>
@@ -102,12 +98,6 @@
 
 
 
-		<dependency>
-			<groupId>com.deena.practice</groupId>
-			<artifactId>LetCode</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-	</dependencies>
-  
+</dependencies>		
   
 </project>
